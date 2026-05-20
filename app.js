@@ -1,6 +1,6 @@
 
 
-const API_URL = "https://resume-mate-786ikgr17-ayaanawan9254-2358s-projects.vercel.app"
+const API_URL = "https://resume-mate-olive.vercel.app"
 
 document.getElementById('close-popup').onclick = function() {
 document.getElementById('ai-info-popup').classList.remove('show');
