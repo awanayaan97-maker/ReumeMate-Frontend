@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResuMate Pro - Resume Builder</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+   
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">Resu<span>Mate</span> Pro</div>
+        <div class="header-actions">
+        <button class="btn-export" onclick="downloadProResume()">⬇️ Download PDF</button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Left Panel - Editor -->
+       <div class="editor-panel">
+    <!-- Personal Info -->
+    <div class="form-section">
+        <div class="section-title">Personal Information</div>
+        
+        <div class="form-group">
+            <label>Full Name</label>
+            <input type="text" name="fullName" placeholder="John Doe" data-preview="previewName" autocomplete="new-password">
+        </div>
+
+        <div class="form-group">
+            <label>Professional Title</label>
+            <input type="text" name="jobTitle" placeholder="Senior Web Developer" data-preview="previewTitle" id="workTitle" autocomplete="new-password">
+        </div>
+
+        <div class="form-group">
+            <label>Email</label>
+            <input type="email" name="email" placeholder="john@example.com" data-preview="previewEmail" autocomplete="new-password">
+        </div>
+
+        <div class="form-group">
+            <label>Phone</label>
+            <input type="tel" name="phone" placeholder="+1 (555) 123-4567" data-preview="previewPhone" autocomplete="new-password">
+        </div>
+
+        <div class="input-row">
+            <div class="form-group">
+                <label>LinkedIn</label>
+                <input type="text" name="linkedin" placeholder="linkedin.com/in/johndoe" data-preview="previewLinkedIn" autocomplete="new-password">
+            </div>
+            <div class="form-group">
+                <label>GitHub</label>
+                <input type="text" name="github" placeholder="github.com/johndoe" data-preview="previewGithub" autocomplete="new-password">
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Location</label>
+            <input type="text" name="location" placeholder="San Francisco, CA" data-preview="previewLocation" autocomplete="new-password">
+        </div>
+    </div>
+
+    <!-- Professional Summary -->
+    <div class="form-section">
+        <div class="section-title">Professional Summary</div>
+        <div class="form-group">
+            <label>Summary</label>
+            <textarea name="summary" placeholder="Write a compelling professional summary" data-preview="previewSummary" id="proSummery" oninput="handleDescriptionUpdate(this.value, 'previewSummary')"></textarea>
+        </div>
+        <button class="ai-enhance" id="AiBtn">Enhance with AI</button>
+    </div>
+
+    <!-- Education -->
+
+    <div class="form-section">
+    <div class="section-title">Education</div>
+    
+    <div class="form-group">
+        <label>Degree</label>
+        <input type="text" name="degree" placeholder="e.g. Bachelor of Science" data-preview="previewDegree" autocomplete="new-password">
+    </div>
+
+    <div class="form-group">
+        <label>Field of Study</label>
+        <input type="text" name="fieldOfStudy" placeholder="e.g. Computer Science" data-preview="previewField" autocomplete="new-password">
+    </div>
+
+    <div class="form-group">
+        <label>Institution</label>
+        <input type="text" name="institution" placeholder="e.g. Stanford University" data-preview="previewInstitute" autocomplete="new-password">
+    </div>
+
+    <div class="input-row">
+        <div class="form-group">
+            <label>Graduation Year</label>
+            <input type="text" name="year" placeholder="2015" data-preview="previewGradYear" autocomplete="new-password">
+        </div>
+        <div class="form-group">
+            <label>GPA: 3.8/4.0</label>
+            <input type="text" name="gpa" placeholder="3.8/4.0" data-preview="fresherPreviewGPA" autocomplete="new-password">
+        </div>
+    </div>
+</div>
+
+
+    <!-- Experience (Latest Role) -->
+    <div class="form-section">
+        <div class="section-title">Professional Experience</div>
+        <div class="form-group">
+            <label>Job Title</label>
+            <input type="text" name="expJobTitle1" placeholder="Senior Full Stack Developer" data-preview="previewJobTitle" id="jobTitle" autocomplete="new-password">
+        </div>
+        <div class="form-group">
+            <label>Company</label>
+            <input type="text" name="expCompany1" placeholder="Tech Corp Inc." data-preview="previewCompany" id="companyName" autocomplete="new-password">
+        </div>
+        <div class="input-row">
+            <div class="form-group">
+                <label>Start Date</label>
+                <input type="text" name="expStartDate1" placeholder="Jan 2020" data-preview="previewStart" autocomplete="new-password">
+            </div>
+            <div class="form-group">
+                <label>End Date</label>
+                <input type="text" name="expEndDate1" placeholder="Present" data-preview="previewEnd" autocomplete="new-password">
+            </div>
+        </div>
+        <div class="form-group">
+            <label>Description</label>
+            <textarea name="expDescription1" placeholder="Describe your responsibilities..." id="description" data-preview="experienceDes" oninput="handleDescriptionUpdate(this.value, 'previewDescriptionContainer')"></textarea>
+        </div>
+        <button class="ai-enhance" id="descriptionAiBtn">Enhance with AI</button>
+    </div>
+
+     <button id="addMore" onclick="addExperience()">Add More</button>
+
+
+  <div class="form-section" id="experience2" style="display: none; margin-top: 20px; border-top: 1px solid #ccc; padding-top: 20px;">
+
+    <div class="section-title">Professional Experience</div>
+    <div class="form-group">
+    <label>Job Title</label>
+    <input type="text" placeholder="Web Developer" data-preview="previewJobTitle2" id="jobTitleInput2" name="expJobTitle2" autocomplete="new-password">
+    </div>
+
+    <div class="form-group">
+    <label>Company</label>
+    <input type="text" placeholder="Previous Solutions Ltd." data-preview="previewCompany2" id="companyInput2" name="expCompany2" autocomplete="new-password">
+   </div>
+
+    <div class="input-row">
+    <div class="form-group">
+    <label>Start Date</label>
+    <input type="text" placeholder="Jun 2018" data-preview="previewStart2" id="startDateInput2" name="expStartDate2" autocomplete="new-password">
+    </div>
+
+    <div class="form-group">
+    <label>End Date</label>
+    <input type="text" placeholder="Dec 2019" data-preview="previewEnd2" id="endDateInput2" name="expEndDate2" autocomplete="new-password">
+    </div>
+
+    </div>
+
+    <div class="form-group">
+
+        <label>Description</label>
+
+        <textarea placeholder="Describe your previous role's responsibilities..." id="description2"  name="expDescription2" data-preview="experienceDes"oninput="handleDescriptionUpdate(this.value, 'previewDescriptionContainer2')"></textarea>
+
+    </div>
+    <button class="ai-enhance" id="enhanceAI2">Enhance with AI</button>
+</div>
+ 
+ <button class="btn" style="display: none;" id="experienceCloseBtn" onclick="closeExperience()">Close</button>
+
+   
+ <!-- Projects -->
+
+<div class="form-section">
+    <div class="section-title">Featured Projects</div>
+    <div class="form-group">
+    <label>Project Name</label>
+    <input type="text" placeholder="E-Commerce Platform" data-preview="previewProject" id="projectName1" name="projectName1" autocomplete="new-password">
+</div>
+
+<div class="form-group">
+<label>Tech Stack</label>
+<input type="text" placeholder="React, Node.js, MongoDB, AWS" data-preview="previewTechStack" name="techStack1" autocomplete="new-password">
+</div>
+
+<div class="form-group">
+<label>Key Achievements</label>
+<textarea placeholder="Describe project results..." oninput="handleDescriptionUpdate(this.value, 'previewProjectDesc1')" name="projectDes1" data-preview="featuredProject"></textarea>
+</div>
+</div>
+
+<button id="addMoreProject" onclick="addProject()" class="btn">Add</button>
+
+<div class="form-section" id="project2" style="display: none;">
+
+<div class="section-title">Featured Projects</div>
+<div class="form-group">
+<label>Project Name</label>
+<input type="text" placeholder="E-Commerce Platform" data-preview="previewProject" name="projectName2" autocomplete="new-password">
+</div>
+
+
+<div class="form-group">
+    <label>Tech Stack</label>
+    <input type="text" placeholder="React, Node.js, MongoDB, AWS" data-preview="previewTechStack" name="techStack2" autocomplete="new-password">
+</div>
+
+<div class="form-group">
+    <label>Key Achievements</label>
+    <textarea placeholder="Describe project results..." oninput="handleDescriptionUpdate(this.value, 'previewProjectDesc2')" name="projectDes2" data-preview="featuredProject2"></textarea>
+</div>
+</div>
+
+<button class="btn" style="display: none;" onclick="closeProject()" id="closeProjectBtn">Close</button> 
+
+ <!-- Skills -->
+
+<div class="form-section">
+<div class="section-title">Skills</div>
+<div class="form-group">
+<label>Skills (comma separated)</label>
+<input type="text" placeholder="React, JavaScript, TypeScript, Node.js, AWS..." id="proSkills" autocomplete="new-password">
+</div>
+<button class="btn" onclick="addSkills()">Add</button>
+</div>
+
+
+    
+    <!-- Certifications -->
+    <div class="form-section">
+        <div class="section-title">Certifications & Awards</div>
+        <div class="form-group">
+            <label>Certifications</label>
+            <textarea type="text" name="certifications" placeholder="AWS Solutions Architect..." data-preview="editCertification"   oninput="handleDescriptionUpdate(this.value, 'previewCertification')"></textarea>
+        </div>
+    </div>
+       </div>
+
+
+
+        <!-- Right Panel - Preview -->
+        <div class="preview-panel">
+            <div class="resume">
+                <!-- Resume Header -->
+                <div class="resume-header">
+                    <div class="resume-name" id="previewName">John Doe</div>
+                    <div class="resume-title" id="previewTitle">Senior Web Developer</div>
+                    <div class="resume-contact">
+                      📧<span id="previewEmail">john@example.com</span>
+                        📞<span id="previewPhone">+1 (555) 123-4567</span>
+                        💼<span id="previewLinkedIn">linkedin.com/in/johndoe</span>
+                        💻<span id="previewGithub">github.com/johndoe</span>
+                        📍<span id="previewLocation">San Francisco, CA</span>
+                    </div>
+                </div>
+
+                <!-- Professional Summary -->
+                <div class="resume-section">
+                    <div class="resume-section-title">Professional Summary</div>
+                <div class="resume-item-description" id="previewSummary">Experienced Senior Web Developer with 8+ years of expertise in building scalable web applications using React, Node.js, and cloud technologies. Proven track record of delivering high-impact solutions for Fortune 500 companies.</div>
+                </div>
+
+
+    <div class="resume-section">
+    <div class="resume-section-title">Education</div>
+    <div class="resume-item">
+        <div class="resume-item-header">
+            <span class="resume-item-title">
+                <span id="previewDegree">Bachelor of Science</span>  
+                <span id="previewFields">(<span id="previewField">Computer Science</span>)</span> 
+            </span>
+            <span class="resume-item-date" id="previewGradYear">2015</span>
+        </div>
+        <div class="resume-item-subtitle">
+            <span id="previewInstitute" style="padding-top: 5px;">Stanford University</span> 
+            <div id="previewGPA" style=" padding-top: 5px; font-weight: bold; color: #555;">GPA: <span id="fresherPreviewGPA">3.8/4.0</span></div>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="resume-section">
+        <div class="resume-section-title">Professional Experience</div>
+        <div class="resume-item">
+            <div class="resume-item-header">
+                <span class="resume-item-title" id="previewJobTitle">Senior Full Stack Developer</span>
+                <div>
+             <span class="resume-item-date" id="previewStart">Jan 2020 </span>
+                <span class="resume-item-date" id="previewEnd"> - Present</span> 
+                </div>
+            </div>
+            <div class="resume-item-subtitle" id="previewCompany">Tech Corp Inc.</div>
+            <div class="resume-item-description" id="previewDescriptionContainer">
+                <div class="resume-bullet" id="bulletPoint1">Led development of mission-critical web platform serving 2M+ users</div>
+                <div class="resume-bullet" id="bulletPoint2">Architected microservices infrastructure increasing system reliability by 40%</div>
+                <div class="resume-bullet" id="bulletPoint3">Mentored team of 5 junior developers</div>
+                </div>
+                </div>
+                </div>
+
+
+
+        <div class="resume-section" style="margin-top: 35px; display:none" id="previewSecondExp">
+    <div class="resume-item">
+        <div class="resume-item-header">
+            <span class="resume-item-title" id="previewJobTitle2">Web Developer</span>
+            <div>
+                <span class="resume-item-date" id="previewStart2">Jun 2018</span>
+                <span class="resume-item-date" id="previewEnd2"> - Dec 2019</span>
+            </div>
+        </div>
+        <div class="resume-item-subtitle" id="previewCompany2">Previous Solutions Ltd.</div>
+        <div class="resume-item-description" id="previewDescriptionContainer2">
+            <div class="resume-bullet" id="point1">Developed and optimized front-end components using modern JavaScript frameworks.</div>
+            <div class="resume-bullet" id="point2">Collaborated with backend teams to integrate RESTful APIs and ensure data consistency.</div>
+            <div class="resume-bullet" id="point3">Improved page load speed by 30% through image optimization and code refactoring.</div>
+        </div>
+    </div>
+</div>
+
+               
+            <div class="resume-section">
+    <div class="resume-section-title">Featured Projects</div>
+
+    <!-- Project 1 Preview -->
+    <div class="resume-item" id="previewProjectItem1">
+        <div class="resume-item-header">
+            <span class="resume-item-title" id="previewProject">E-Commerce Platform</span>
+        </div>
+        <div class="resume-item-subtitle" id="previewTechStack">React, Node.js, MongoDB, AWS</div>
+        <div class="resume-item-description" id="previewProjectDesc1">
+            <div class="resume-bullet">Developed a fully functional e-commerce site with secure Stripe payment integration.</div>
+            <div class="resume-bullet">Optimized database queries, reducing page load time by 40%.</div>
+            <div class="resume-bullet">Implemented an admin dashboard for real-time inventory and order tracking.</div>
+        </div>
+    </div>
+
+    <!-- Project 2 Preview (Initially Hidden) -->
+    <div class="resume-item" id="previewProjectItem2" style="display: none; margin-top: 15px;">
+        <div class="resume-item-header">
+            <span class="resume-item-title" id="previewProject2">Task Management System</span>
+        </div>
+        <div class="resume-item-subtitle" id="previewTechStack2">Next.js, Firebase, Tailwind CSS</div>
+        <div class="resume-item-description" id="previewProjectDesc2">
+            <div class="resume-bullet">Built a collaborative task manager with real-time updates using WebSockets.</div>
+            <div class="resume-bullet">Integrated Google Auth for seamless user onboarding and security.</div>
+            <div class="resume-bullet">Designed a responsive UI that works across mobile, tablet, and desktop devices.</div>
+        </div>
+    </div>
+</div>
+
+            
+                <!-- Skills -->
+                <div class="resume-section">
+                    <div class="resume-section-title">Skills</div>
+                    <div class="resume-item-description" id="skillContainer"  data-preview="previewSkills"></div>
+                </div>
+
+                <!-- Certifications -->
+                <div class="resume-section">
+                    <div class="resume-section-title">Certifications & Awards</div>
+                    <div class="resume-item-description" id="previewCertification">
+                        <div class="resume-bullet">AWS Solutions Architect Certification</div>
+                        <div class="resume-bullet" id="previewAwards">Employee of the Year 2023 - Tech Corp Inc.</div>
+                        <div class="resume-bullet">Innovation Award Winner 2022</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div id="ai-info-popup" class="info-popup">
+    <div class="popup-content">
+        <span class="icon">💡</span>
+        <div class="text-container">
+            <!-- Text yahan JS se ayega -->
+            <p id="popup-text" class="popup-msg"></p>
+        </div>
+        <button id="close-popup" class="close-btn">&times;</button>
+    </div>
+</div>
+     <script src="app.js"></script>
+
+</body>
+</html>

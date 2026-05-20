@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ResuMate Pro - Fresher Resume Builder</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+   
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="logo">Resu<span>Mate</span> Fresh</div>
+        <div class="header-actions">
+        <button class="btn-export" onclick="downloadBtn()">⬇️ Download PDF</button>
+        </div>
+    </header>
+
+    <!-- Main Container -->
+   <div class="container">
+  <!-- Left Panel - Editor -->
+  <div class="editor-panel">
+
+    <!-- Personal Info -->
+    <div class="form-section">
+      <div class="section-title">Personal Information</div>
+      
+      <div class="form-group">
+        <label>Full Name</label>
+        <input type="text" placeholder="Sarah Johnson" data-preview="fresherPreviewName" name="fullName" autocomplete="new-password">
+      </div>
+      
+      <div class="form-group">
+        <label>Professional Title / Role</label>
+        <input type="text" placeholder="Junior Full Stack Developer" data-preview="fresherPreviewTitle" name="jobTitle" autocomplete="new-password">
+      </div>
+      
+      <div class="form-group">
+        <label>Email</label>
+        <input type="email" placeholder="sarah@example.com" data-preview="fresherPreviewEmail" name="email" autocomplete="new-password">
+      </div>
+      
+      <div class="form-group">
+        <label>Phone</label>
+        <input type="tel" placeholder="+1 (555) 987-6543" data-preview="fresherPreviewPhone" name="phone" autocomplete="new-password">
+      </div>
+      
+      <div class="input-row">
+        <div class="form-group">
+          <label>LinkedIn</label>
+          <input type="text" placeholder="linkedin.com/in/sarahjohnson" data-preview="fresherPreviewLinkedIn" name="linkedin" autocomplete="new-password">
+        </div>
+        <div class="form-group">
+          <label>GitHub</label>
+          <input type="text" placeholder="github.com/sarahjohnson" data-preview="fresherPreviewGithub" name="github" autocomplete="new-password">
+        </div>
+      </div>
+      
+      <div class="form-group">
+        <label>Location</label>
+        <input type="text" placeholder="New York, NY" data-preview="fresherPreviewLocation" name="location" autocomplete="new-password">
+      </div>
+    </div>
+
+    <!-- Professional Summary -->
+    <div class="form-section">
+      <div class="section-title">Career Objective</div>
+      <div class="form-group">
+        <label>Objective Statement</label>
+        <textarea placeholder="Seeking an entry-level position where I can apply my technical skills and passion for web development..." data-preview="fresherPreviewSummary" id="objective" name="objective"></textarea>
+      </div>
+      <button class="ai-enhance" id="fresherAiBtn">Enhance with AI</button>
+    </div>
+
+    <!-- Education -->
+    <div class="form-section">
+      <div class="section-title">Education</div>
+      <div class="form-group">
+        <label>Degree</label>
+        <input type="text" placeholder="Bachelor of Science in Computer Science" data-preview="fresherPreviewDegree" name="degree" autocomplete="new-password">
+      </div>
+      <div class="form-group">
+        <label>University / College</label>
+        <input type="text" placeholder="State University" data-preview="fresherPreviewInstitute" name="institute" autocomplete="new-password">
+      </div>
+      <div class="input-row">
+        <div class="form-group">
+          <label>Graduation Year</label>
+          <input type="text" placeholder="2024" data-preview="fresherPreviewGradYear" name="gradYear" autocomplete="new-password">
+        </div>
+        <div class="form-group">
+          <label>GPA</label>
+          <input type="text" placeholder="3.8/4.0" data-preview="fresherPreviewGPA" name="GPA" autocomplete="new-password">
+        </div>
+      </div>
+    </div>
+
+    <!-- Academic Projects -->
+    <div class="form-section">
+      <div class="section-title">Academic & Personal Projects</div>
+      
+      <div class="form-group">
+        <label>Project Name</label>
+        <input type="text" placeholder="E-Learning Platform" data-preview="fresherPreviewProject" id="projectName" name="project1" autocomplete="new-password">
+      </div>
+      
+      <div class="form-group">
+        <label>Tech Stack</label>
+        <input type="text" placeholder="React, Node.js, MongoDB" data-preview="fresherPreviewTechStack" id="techStack" name="techStack1" autocomplete="new-password">
+      </div>
+      
+      <div class="form-group">
+        <label>Project Description / Achievements</label>
+        <textarea placeholder="Describe your project and what you learned..." id="description" data-preview="projectDes1" name="projectDescription1" oninput=" textAreaHandler(this.value, 'projectsPoints')"></textarea>
+      </div>
+      
+      <button class="ai-enhance" onclick="projectDescription()">Enhance with AI</button>
+      
+      <div class="form-group">
+        <label style="margin-top: 25px;">Project Link</label>
+        <input type="text" placeholder="project.com/sarahjohnson/project-name" data-preview="fresherPreviewProjectLink" name="projectLink1" autocomplete="new-password">
+      </div>
+    </div>
+
+    <button class="btn" id="fresherAddMoreProject" onclick="fresherAddProjectHandler()">Add More Project</button>
+
+    <!-- Hidden Project 2 -->
+    <div class="form-section" id="fresherProject2" style="display: none;">
+      <div class="section-title">Academic & Personal Projects</div>
+      <div class="form-group">
+        <label>Project Name</label>
+        <input type="text" placeholder="Task Management App" data-preview="fresherPreviewProject2" id="projectName2" name="project2" autocomplete="new-password">
+      </div>
+      <div class="form-group">
+        <label>Tech Stack</label>
+        <input type="text" placeholder="Vue.js, Firebase" data-preview="fresherPreviewTechStack2" id="techStack2" name="techStack2" autocomplete="new-password">
+      </div>
+      <div class="form-group">
+        <label>Project Description / Achievements</label>
+        <textarea placeholder="Describe your project and what you learned..." id="description2" name="projectDescription2" data-preview="projectDes1" oninput="textAreaHandler(this.value, 'projectPoints2')"></textarea>
+      </div>
+      <div class="form-group">
+        <label style="margin-top: 25px;">Project Link</label>
+        <input type="text" placeholder="project.com/sarahjohnson/project-name-2" data-preview="fresherPreviewProjectLink2" name="projectLink2" autocomplete="new-password">
+      </div>
+      <button class="ai-enhance" onclick="projectDescription2()">Enhance with AI</button>
+    </div>
+
+    <button class="btn" id="closeProject" onclick="projectCloser()" style="display: none;">Close</button>
+
+
+    <!-- Technical Skills -->
+    <div class="form-section">
+      <div class="section-title">Technical Skills</div>
+      <div class="form-group">
+        <label>Skills (comma separated)</label>
+        <input type="text" placeholder=" Project Management • Data Analysis • Microsoft Office..."name="skills" id="inputSkill" autocomplete="new-password">
+      </div>
+      <button class="btn" onclick="addSkills()">Add</button>
+    </div>
+
+
+    <!-- Certifications & Courses -->
+    <div class="form-section">
+      <div class="section-title">Certifications & Online Courses</div>
+      <div class="form-group">
+        <label>Certifications</label>
+        <textarea type="text" placeholder="Google Cloud Skills Boost, Meta Front-End Developer..." data-preview="fresherPreviewCertification" name="certificationsName" oninput="textAreaHandler(this.value, 'previewCertificationsContainer')"></textarea>
+      </div>
+      <div class="form-group">
+        <label>Online Courses</label>
+        <textarea placeholder="Udemy React Course, Coursera Web Development..." data-preview="fresherPreviewCourses" name="onlineCourses" oninput="textAreaHandler(this.value, 'previewCoursesContainer')"></textarea>
+      </div>
+    </div>
+
+    <!-- Achievements & Awards -->
+    <div class="form-section">
+      <div class="section-title">Achievements & Awards</div>
+      <div class="form-group">
+        <label>Achievements & Awards</label>
+        <textarea placeholder="Dean's List, Hackathon Winner, etc..." data-preview="fresherPreviewAchievements" name="Achievements" oninput="textAreaHandler(this.value, 'fresherPreviewAchievements')"></textarea>
+      </div>
+    </div>
+
+    <!-- Languages -->
+    <div class="form-section">
+      <div class="section-title">Languages</div>
+      <div class="form-group">
+        <label>Languages</label>
+        <input type="text" placeholder="English (Native), Spanish (Intermediate)..."  name="Languages" id="languageInput" data-preview="Language" autocomplete="new-password">
+      </div>
+       <button class="btn" onclick="addLanguage()">Add</button>
+    </div>
+
+    <!-- Internships Section -->
+    <div class="section-title" id="outerText">Internships & Training (Optional)</div>
+    <button class="btn" id="openSectionBtn" onclick="openInternSection()">Open Section</button>
+
+    <div class="form-section" style="display: none;" id="internshipSection">
+      <div class="section-title">Internships & Training (Optional)</div>
+      <div class="form-group">
+        <label>Position Title</label>
+        <input type="text" placeholder="Front-end Developer Intern" data-preview="fresherPreviewInternshipTitle" id="fresherInternshipTitle" name="internshipPosition">
+      </div>
+      <div class="form-group">
+        <label>Company / Organization</label>
+        <input type="text" placeholder="Tech Startup Inc." data-preview="fresherPreviewInternshipCompany" id="fresherInternshipCompany" name="internshipCompany">
+      </div>
+      <div class="input-row">
+        <div class="form-group">
+          <label>Start Date</label>
+          <input type="text" placeholder="Jun 2024" data-preview="fresherPreviewInternStart" name="internshipStartDate">
+        </div>
+        <div class="form-group">
+          <label>End Date</label> <input type="text" placeholder="Aug 2024" data-preview="fresherPreviewInternEnd" name="internshipEndDate">
+        </div>
+      </div>
+      <div class="form-group">
+        <label>Description / Responsibilities</label>
+        <textarea placeholder="Describe what you did during your internship..." id="fresherInternshipDescription" data-preview="internshipDescription" name="internshipDes" oninput="textAreaHandler(this.value, 'internshipPoints')"></textarea>
+      </div>
+    </div>
+
+    <button class="btn" style="display: none;" id="closeSection" onclick="closeInternSection()">Close Section</button>
+
+  </div>
+
+
+        <!-- Right Panel - Preview -->
+<div class="preview-panel">
+  <div class="resume">
+                <!-- Resume Header -->
+   <div class="resume-header">
+    <div class="resume-name" id="fresherPreviewName">Sarah Johnson</div>
+    <div class="resume-title" id="fresherPreviewTitle">Junior Full Stack Developer</div>
+    <div class="resume-contact">
+    📧<span id="fresherPreviewEmail">sarah@example.com</span>
+      📞<span id="fresherPreviewPhone">+1 (555) 987-6543</span>
+      💼<span id="fresherPreviewLinkedIn">linkedin.com/sarahjohnson</span>
+      💻<span id="fresherPreviewGithub">github.com/sarahjohnson</span>
+      📍<span id="fresherPreviewLocation">New York, NY</span>
+      </div>
+      </div>
+
+                <!-- Career Objective -->
+                <div class="resume-section">
+                    <div class="resume-section-title">Career Objective</div>
+                    <div class="resume-item-description" id="fresherPreviewSummary">Passionate and detail-oriented recent graduate seeking an entry-level web developer position to leverage strong technical foundations in React, Node.js, and modern web technologies. Eager to contribute to innovative projects while continuously learning and growing in a collaborative team environment.</div>
+                </div>
+
+            
+                <!-- Education -->
+                <div class="resume-section">
+                    <div class="resume-section-title">Education</div>
+                    <div class="resume-item">
+                        <div class="resume-item-header">
+                        <span class="resume-item-title" id="fresherPreviewDegree">Bachelor of Science in Computer Science</span>
+                        <span class="resume-item-date" id="fresherPreviewGradYear">2024<span>
+                        </div>
+                        <div class="resume-item-subtitle" id="fresherPreviewInstitute">State University</div>
+                        <div class="resume-item-description">GPA: <span id="fresherPreviewGPA">3.8/4.0</span></div>
+                    </div>
+                </div>
+
+                <!-- Projects -->
+  <div class="resume-section">
+      <div class="resume-section-title">Academic & Personal Projects</div>
+      <div class="resume-item">
+          <div class="resume-item-header">
+              <span class="resume-item-title" id="fresherPreviewProject">E-Learning Platform</span>
+          </div>
+          <div class="resume-item-subtitle" id="fresherPreviewTechStack">React, Node.js, MongoDB</div>
+          <div class="resume-item-description" id="projectsPoints">
+              <div class="resume-bullet" id="projectPoint1">Built a full-stack learning management system for 100+ beta users</div>
+              <div class="resume-bullet" id="projectPoint2">Implemented real-time notifications and course progress tracking</div>
+                        </div>
+                         <div class="resume-bullet">Project Link: <span id="fresherPreviewProjectLink" style="color: #1a73e8;">project.com/sarahjohnson/project</span></div>
+                    </div>
+                </div>
+
+
+        <div class="resume-section" id="secondProjectSection" style="margin-top: 30px; display: none;">
+    <div class="resume-item">
+        <div class="resume-item-header">
+            <!-- Universal ID use kiya hai jo har field par fit aye -->
+            <span class="resume-item-title" id="fresherPreviewProject2">Market Expansion Strategy</span>
+        </div>
+        <!-- Methodology/Tools instead of Tech Stack -->
+        <div class="resume-item-subtitle" id="fresherPreviewTechStack2">Methodology: SWOT Analysis, Market Research, SPSS</div>
+        
+        <div class="resume-item-description" id="projectPoints2">
+            <div class="resume-bullet" id="projectPoint4">Conducted comprehensive market research for a local startup to identify growth opportunities in 3 new cities.</div>
+            <div class="resume-bullet" id="projectPoint5">Analyzed consumer behavior data from 500+ respondents to refine brand positioning and pricing strategy.</div>
+            <div class="resume-bullet" id="projectPoint6">Developed a 12-month marketing roadmap that projected a 20% increase in customer engagement.</div>
+          
+        </div>
+        <div class="resume-bullet">
+                Project Link: <span id="fresherPreviewProjectLink2" style="color: #1a73e8;">drive.google.com/market-report/final</span>
+            </div>
+    </div>
+</div>
+
+        <!-- Skills -->
+      <div class="resume-section">
+    <div class="resume-section-title">Skills & Expertise</div>
+    <div class="resume-item-description" id="skillContainer" data-preview="PreviewSkills"></div>
+</div>
+
+                
+<div class="resume-section">
+    <div class="resume-section-title">Certifications</div>
+    <div class="resume-item-description" id="previewCertificationsContainer">
+        <div class="resume-bullet">Google Cloud Skills Boost - Web Development</div>
+        <div class="resume-bullet">Coursera - Full Stack Web Development Specialization</div>
+    </div>
+</div>
+
+
+<div class="resume-section">
+    <div class="resume-section-title">Online Courses</div>
+    <div class="resume-item-description" id="previewCoursesContainer">
+        <!-- Default / Static Courses -->
+        <div class="resume-bullet">Udemy - The Complete React Course 2026</div>
+        <div class="resume-bullet">FreeCodeCamp - Responsive Web Design Certification</div>
+    </div>
+</div>
+
+
+
+                <!-- Achievements -->
+                <div class="resume-section">
+                    <div class="resume-section-title">Achievements & Awards</div>
+          <div class="resume-item-description" id="fresherPreviewAchievements">
+                        <div class="resume-bullet">Dean's List - All 4 Years</div>
+                        <div class="resume-bullet">Hackathon Winner - State University Tech Hackathon 2024</div>
+                    </div>
+                </div>
+
+                <!-- Languages -->
+                <div class="resume-section">
+                    <div class="resume-section-title">Languages</div>
+         <div class="resume-item-description" data-preview="fresherPreviewLanguages" id="previewLanguage"></div>
+                </div>
+
+                
+            <div class="resume-section" id="previewInternship" style="display: none;">
+        <div class="resume-section-title">Internships & Training</div>
+        <div class="resume-item">
+            <div class="resume-item-header">
+                <span class="resume-item-title" id="fresherPreviewInternshipTitle">Front-end Developer Intern</span>
+                <div>
+             <span class="resume-item-date" id="fresherPreviewInternStart">Jun 2024 </span>
+                <span class="resume-item-date" id="fresherPreviewInternEnd"> - Aug 2024</span> 
+                </div>
+            </div>
+            <div class="resume-item-subtitle" id="fresherPreviewInternshipCompany">Tech Startup Inc.</div>
+            <div class="resume-item-description" id="internshipPoints">
+                <div class="resume-bullet" id="fresherInternBullet1">Developed responsive UI components using React and CSS, improving page load time by 25%</div>
+                <div class="resume-bullet" id="fresherInternBullet2">Collaborated with senior developers on a real-world project, gaining hands-on experience</div>
+                <div class="resume-bullet" id="fresherInternBullet3">Fixed 15+ bugs and implemented 5 feature requests under code review supervision</div>
+                </div>
+                </div>
+                </div>
+
+
+
+            </div>
+
+
+
+        </div>
+
+        
+
+    </div>
+
+
+    <div id="ai-info-popup" class="info-popup">
+    <div class="popup-content">
+        <span class="icon">💡</span>
+        <div class="text-container">
+            <p id="popup-text" class="popup-msg"></p>
+        </div>
+        <button id="close-popup" class="close-btn">&times;</button>
+    </div>
+</div>
+     <script src="fresher.js"></script>
+
+</body>
+</html>

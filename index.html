@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resumate - Professional Resume Builder</title>
+    <link rel="stylesheet" href="landing.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+   
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+            <span class="logo-icon"></span>Resumate
+            </div>
+            <nav>
+            <a href="#features">Features</a>
+            <a href="#about">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Build Your Perfect Resume in Minutes</h1>
+        <p>Create a professional, ATS-friendly resume tailored to your career level. Choose between Professional and Fresher templates and let AI enhance your skills.</p>
+    </section>
+
+    <!-- Resume Type Selector -->
+    <section class="resume-selector" id="features">
+        <h2 class="selector-title">Select Your Resume Type</h2>
+        
+        <div class="resume-cards">
+            <!-- Professional Resume -->
+            <div class="resume-card">
+                <div class="card-icon">💼</div>
+                <h2>Professional</h2>
+                <p>Perfect for experienced professionals looking to highlight their career achievements.</p>
+                <ul class="card-features">
+                    <li>Work Experience Focus</li>
+                    <li>Advanced Skills Section</li>
+                    <li>Projects & Achievements</li>
+                    <li>AI-Enhanced Descriptions</li>
+                </ul>
+                <button class="btn-primary" onclick="professionalResume()">Create Professional Resume</button>
+            </div>
+
+            <!-- Fresher Resume -->
+            <div class="resume-card">
+                <div class="card-icon">🎓</div>
+                <h2>Fresher</h2>
+                <p>Ideal for graduates and entry-level candidates starting their career journey.</p>
+                <ul class="card-features">
+                    <li>Education Highlighted</li>
+                    <li>Internships & Projects</li>
+                    <li>Certifications & Courses</li>
+                    <li>Achievements Section</li>
+                </ul>
+                <button class="btn-primary" onclick="fresherResume()">Create Fresher Resume</button>
+            </div>
+        </div>
+    </section>
+
+   
+
+    
+    <section class="about" id="about">
+        <h2 class="section-title">About Resumate</h2>
+        <div class="about-content">
+            <p>Welcome to <strong>Resumate</strong>, the modern resume builder designed to empower professionals and fresh graduates alike. We understand that creating a standout resume is crucial for your career success, which is why we've built a platform that simplifies the entire process.</p>
+            
+            <p>Our mission is to <strong>democratize resume building</strong> by providing intuitive tools that work for everyone, whether you're an experienced professional with decades of expertise or a recent graduate stepping into the job market for the first time.</p>
+            
+            <p><strong>What sets us apart:</strong></p>
+            <ul class="card-features">
+                <li>AI-powered resume enhancement to optimize your descriptions</li>
+                <li>ATS-optimized templates that get past automated screening</li>
+                <li>Separate professional and fresher-level templates</li>
+                <li>Real-time preview of your resume as you type</li>
+                <li>Download in multiple formats (PDF, Word, etc.)</li>
+                <li>Completely free, no hidden charges or subscriptions</li>
+            </ul>
+
+            <p style="margin-top: 20px;">We're committed to helping you land your dream job. Let's build something remarkable together!</p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="features" id="features">
+        <h2 class="section-title">Why Choose Resumate?</h2>
+        <div class="features-grid">
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>Lightning Fast</h3>
+                <p>Create a professional resume in minutes, not hours. Our streamlined process gets you ready to apply.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🤖</div>
+                <h3>AI Enhancement</h3>
+                <p>Let AI optimize your descriptions and skills to make them more impactful and professional.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">✅</div>
+                <h3>ATS Optimized</h3>
+                <p>Our templates are designed to pass through Applicant Tracking Systems without any issues.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📱</div>
+                <h3>Mobile Friendly</h3>
+                <p>Build and edit your resume anywhere, anytime on any device with our responsive interface.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>Tailored Templates</h3>
+                <p>Choose between professional and fresher templates specifically designed for your career stage.</p>
+            </div>
+
+            <div class="feature-card">
+                <div class="feature-icon">📥</div>
+                <h3>Multiple Formats</h3>
+                <p>Download your resume in PDF, Word, or plain text format for maximum compatibility.</p>
+            </div>
+        </div>
+    </section>
+
+    
+
+    
+
+    <script src="index.js"></script>
+   
+</body>
+</html>

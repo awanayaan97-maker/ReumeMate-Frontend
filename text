@@ -1,0 +1,35 @@
+Create a high-quality, professional Resume Builder UI using only HTML and CSS. Do not include any JavaScript logic.
+
+Layout Concept:
+Use a split-screen dashboard. The left side (40% width) is a scrollable 'Editor' with forms. The right side (60% width) is a 'Live Preview' area with a light gray background to make the white A4 resume 'pop'.
+
+Editor Sections (Left Side):
+Create clean, titled card-style forms for the following:
+
+Personal Info: Fields for Name, Professional Title, Email, Phone, LinkedIn, GitHub, and Location.
+
+Professional Summary: A large textarea with a '✨ Enhance with AI' button.
+
+Experience: Fields for Job Title, Company, Date, and Description (with an '✨ Enhance with AI' button).
+
+Education: Fields for Degree, Institution, and Graduation Year.
+
+Projects: Fields for Project Name, Tech Stack, and Key Achievements.
+
+Skills: A simple input for comma-separated skills.
+
+Certifications & Awards: A section for extra achievements.
+
+Resume Template (Right Side - Preview):
+Design a professional 'Classic Tech' resume template inside a white container with a subtle shadow (A4 aspect ratio).
+
+Header: Centered Name in bold, Title in blue, and a single-line contact info bar using emojis (📧, 📞, 💼, 💻, 📍).
+
+Typography: Use a clean sans-serif font stack.
+
+Dividers: Each section (Summary, Experience, etc.) must have a bold heading with a thin horizontal line (border-bottom) underneath.
+
+Bullet Points: Use custom styled dots for lists in Experience and Projects.
+
+Style:
+Use a modern 'Indigo/Blue' theme for buttons. The UI should look like a premium tool (e.g., Canva or Resume.io). Ensure the preview container stays fixed or scrollable independently from the form."
