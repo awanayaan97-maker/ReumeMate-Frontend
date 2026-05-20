@@ -83,13 +83,14 @@ textAreaHandler(fullDescription, targetContainer)
 
 }
 else{
-    showPopup("AI failed to enhance description.")
+    showPopup("Google Gemini is experiencing high demand. Please wait a moment and try again!")
 }
 
 } 
 
 catch (error) {
 console.log(error);    
+showPopup("Google Gemini is experiencing high demand. Please wait a moment and try again!")
 }
 }
 
@@ -148,7 +149,7 @@ if (fresherAiBtn) {
 
     catch (error) {
     console.log(error);
-        
+    showPopup(`Google Gemini is experiencing high demand. Please wait a moment and try again!`)   
     }
 
     })
