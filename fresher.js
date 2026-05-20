@@ -321,6 +321,7 @@ async function addResume() {
         return; 
     }
 
+    console.log(resumeData);
     try {
         let response = await fetch(`${API_URL}/api/resume/fresher`,{
             method: "POST",
