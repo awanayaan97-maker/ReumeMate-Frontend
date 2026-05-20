@@ -322,7 +322,7 @@ async function addResume() {
     }
 
     try {
-        let response = await fetch(`${API_URL}/api/resume/freshe`,{
+        let response = await fetch(`${API_URL}/api/resume/fresher`,{
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(resumeData)
