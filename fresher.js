@@ -377,13 +377,6 @@ function downloadResume() {
     const element = document.querySelector('.resume');
     if (!element) return;
 
-    const isMobile = window.innerWidth < 1024;
-    
-    if (isMobile) {
-        element.style.width = '1024px';
-        element.style.minWidth = '1024px';
-    }
-
     const options = {
         margin:       0, 
         filename:     'My_Resume.pdf',
@@ -394,6 +387,7 @@ function downloadResume() {
             letterRendering: true,
             scrollY: 0,
             windowY: 0,
+            width: window.innerWidth < 1024 ? 1024 : element.offsetWidth,
             height: element.scrollHeight,
             removeContainer: true
         },
@@ -401,13 +395,7 @@ function downloadResume() {
         pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
     };
     
-    html2pdf().set(options).from(element).toPdf().get('pdf').then((pdf) => {
-
-        if (isMobile) {
-            element.style.width = '';
-            element.style.minWidth = '';
-        }
-    }).save();
+    html2pdf().set(options).from(element).save();
 }
 
 function textAreaHandler(text, containerId) {
