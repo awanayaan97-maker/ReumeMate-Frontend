@@ -383,9 +383,9 @@ return
 function downloadResume() {
     
 const element = document.querySelector('.resume');
-if (!element) return;
+  if (!element) return;
 
-const options = {
+    const options = {
         margin:       0, 
         filename:     'My_Resume.pdf',
         image:        { type: 'jpeg', quality: 0.98 },
@@ -394,9 +394,12 @@ const options = {
         useCORS: true, 
         letterRendering: true,
         scrollY: 0,
-        windowY: 0
+        windowY: 0,
+        height: element.scrollHeight, 
+        removeContainer: true
     },
-    jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' }
+        jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
+        pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
     };
     
     html2pdf().set(options).from(element).save();
