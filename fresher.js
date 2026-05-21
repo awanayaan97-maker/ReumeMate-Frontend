@@ -374,28 +374,40 @@ languageInput.value = ""
 }
 
 function downloadResume() {
-const element = document.querySelector('.resume');
-  if (!element) return;
+    const element = document.querySelector('.resume');
+    if (!element) return;
+
+    const isMobile = window.innerWidth < 1024;
+    
+    if (isMobile) {
+        element.style.width = '1024px';
+        element.style.minWidth = '1024px';
+    }
 
     const options = {
         margin:       0, 
         filename:     'My_Resume.pdf',
         image:        { type: 'jpeg', quality: 0.98 },
         html2canvas:  { 
-        scale: 2, 
-        useCORS: true, 
-        letterRendering: true,
-        scrollY: 0,
-        windowY: 0,
-        height: element.scrollHeight, 
-        removeContainer: true
-    },
+            scale: 2, 
+            useCORS: true, 
+            letterRendering: true,
+            scrollY: 0,
+            windowY: 0,
+            height: element.scrollHeight,
+            removeContainer: true
+        },
         jsPDF: { unit: 'in', format: 'a4', orientation: 'portrait' },
         pagebreak: { mode: ['avoid-all', 'css', 'legacy'] }
     };
     
-    html2pdf().set(options).from(element).save();    
+    html2pdf().set(options).from(element).toPdf().get('pdf').then((pdf) => {
 
+        if (isMobile) {
+            element.style.width = '';
+            element.style.minWidth = '';
+        }
+    }).save();
 }
 
 function textAreaHandler(text, containerId) {
