@@ -460,3 +460,44 @@ const htmlContent = lines.map(line => `<div class="resume-bullet">${line}</div>`
 container.innerHTML = htmlContent;
 
 }
+
+
+function showLink (name){
+
+let fresherPreviewLinkedIn = document.getElementById("fresherPreviewLinkedIn");
+let fresherPreviewGithub = document.getElementById("fresherPreviewGithub");
+let fresherPreviewProjectLink = document.getElementById("fresherPreviewProjectLink")
+let fresherPreviewProjectLink2 = document.getElementById("fresherPreviewProjectLink2");
+
+
+if (name === "linkedIn"  && fresherPreviewLinkedIn.innerText !== "") {
+let linkedInLink = fresherPreviewLinkedIn.innerText.trim();
+window.open(linkedInLink, '_blank')
+}
+
+if (name === "gitHub"  && fresherPreviewGithub.innerText !== "") {
+let githubLink = fresherPreviewGithub.innerText.trim();
+window.open(githubLink, '_blank')
+}
+
+if (name === "project1"  && fresherPreviewProjectLink.innerText !== "") {
+let projectLink = fresherPreviewProjectLink.innerText.trim()
+window.open(projectLink, "_blank");
+}
+
+if (name === "project2"  && fresherPreviewProjectLink2.innerText !== "") {
+let project2Link = fresherPreviewProjectLink2.innerText.trim();
+window.open(project2Link, "_blank")
+}
+
+
+}
+
+
+function optionalInputs(value) {
+
+let fresherPreviewGithub = document.getElementById("fresherPreviewGithub");
+
+fresherPreviewGithub.innerText = value
+
+}

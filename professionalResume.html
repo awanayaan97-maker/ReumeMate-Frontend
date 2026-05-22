@@ -54,8 +54,8 @@
                 <input type="text" name="linkedin" placeholder="linkedin.com/in/johndoe" data-preview="previewLinkedIn" autocomplete="new-password">
             </div>
             <div class="form-group">
-                <label>GitHub</label>
-                <input type="text" name="github" placeholder="github.com/johndoe" data-preview="previewGithub" autocomplete="new-password">
+                <label>GitHub (optional)</label>
+                <input type="text" name="github" placeholder="github.com/johndoe" autocomplete="new-password" oninput="optionalInputs(this.value)">
             </div>
         </div>
 
@@ -227,7 +227,7 @@
 <div class="form-section">
 <div class="section-title">Skills</div>
 <div class="form-group">
-<label>Skills (comma separated)</label>
+<label>Type and click Add</label>
 <input type="text" placeholder="React, JavaScript, TypeScript, Node.js, AWS..." id="proSkills" autocomplete="new-password">
 </div>
 <button class="btn" onclick="addSkills()">Add</button>
@@ -257,8 +257,8 @@
                     <div class="resume-contact">
                       📧<span id="previewEmail">john@example.com</span>
                         📞<span id="previewPhone">+1 (555) 123-4567</span>
-                        💼<span id="previewLinkedIn">linkedin.com/in/johndoe</span>
-                        💻<span id="previewGithub">github.com/johndoe</span>
+                        💼<span id="previewLinkedIn" onclick="showLink('linkedIn')" style="cursor: pointer; color: #3b82f6;">https://www.linkedin.com</span>
+                        💻<span id="previewGithub" onclick="showLink('github')" style="cursor: pointer; color: #3b82f6;">https://github.com</span>
                         📍<span id="previewLocation">San Francisco, CA</span>
                     </div>
                 </div>

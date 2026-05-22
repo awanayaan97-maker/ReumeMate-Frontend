@@ -55,8 +55,8 @@
           <input type="text" placeholder="linkedin.com/in/sarahjohnson" data-preview="fresherPreviewLinkedIn" name="linkedin" autocomplete="new-password">
         </div>
         <div class="form-group">
-          <label>GitHub</label>
-          <input type="text" placeholder="github.com/sarahjohnson" data-preview="fresherPreviewGithub" name="github" autocomplete="new-password">
+          <label>GitHub (optional)</label>
+          <input type="text" placeholder="github.com/sarahjohnson" name="github" autocomplete="new-password" oninput="optionalInputs(this.value)">
         </div>
       </div>
       
@@ -81,8 +81,14 @@
       <div class="section-title">Education</div>
       <div class="form-group">
         <label>Degree</label>
-        <input type="text" placeholder="Bachelor of Science in Computer Science" data-preview="fresherPreviewDegree" name="degree" autocomplete="new-password">
+        <input type="text" placeholder="Bachelor of Science" data-preview="fresherPreviewDegree" name="degree" autocomplete="new-password">
       </div>
+
+      <div class="form-group">
+        <label>Field of Study</label>
+        <input type="text" name="fresherStudyField" placeholder="e.g. Computer Science" data-preview="previewField" autocomplete="new-password">
+    </div>
+
       <div class="form-group">
         <label>University / College</label>
         <input type="text" placeholder="State University" data-preview="fresherPreviewInstitute" name="institute" autocomplete="new-password">
@@ -157,7 +163,7 @@
     <div class="form-section">
       <div class="section-title">Technical Skills</div>
       <div class="form-group">
-        <label>Skills (comma separated)</label>
+        <label>Type and click Add</label>
         <input type="text" placeholder=" Project Management • Data Analysis • Microsoft Office..."name="skills" id="inputSkill" autocomplete="new-password">
       </div>
       <button class="btn" onclick="addSkills()">Add</button>
@@ -240,8 +246,8 @@
     <div class="resume-contact">
     📧<span id="fresherPreviewEmail">sarah@example.com</span>
       📞<span id="fresherPreviewPhone">+1 (555) 987-6543</span>
-      💼<span id="fresherPreviewLinkedIn">linkedin.com/sarahjohnson</span>
-      💻<span id="fresherPreviewGithub">github.com/sarahjohnson</span>
+      💼<span id="fresherPreviewLinkedIn" onclick="showLink('linkedIn')" style="cursor: pointer; color: #3b82f6;">https://www.linkedin.com</span>
+      💻<span id="fresherPreviewGithub" onclick="showLink('gitHub')" style="cursor: pointer; color: #3b82f6;">https://github.com</span>
       📍<span id="fresherPreviewLocation">New York, NY</span>
       </div>
       </div>
@@ -252,19 +258,25 @@
                     <div class="resume-item-description" id="fresherPreviewSummary">Passionate and detail-oriented recent graduate seeking an entry-level web developer position to leverage strong technical foundations in React, Node.js, and modern web technologies. Eager to contribute to innovative projects while continuously learning and growing in a collaborative team environment.</div>
                 </div>
 
-            
-                <!-- Education -->
-                <div class="resume-section">
-                    <div class="resume-section-title">Education</div>
-                    <div class="resume-item">
-                        <div class="resume-item-header">
-                        <span class="resume-item-title" id="fresherPreviewDegree">Bachelor of Science in Computer Science</span>
-                        <span class="resume-item-date" id="fresherPreviewGradYear">2024<span>
-                        </div>
-                        <div class="resume-item-subtitle" id="fresherPreviewInstitute">State University</div>
-                        <div class="resume-item-description">GPA: <span id="fresherPreviewGPA">3.8/4.0</span></div>
-                    </div>
-                </div>
+        
+
+  <div class="resume-section">
+    <div class="resume-section-title">Education</div>
+    <div class="resume-item">
+        <div class="resume-item-header">
+            <span class="resume-item-title">
+                <span id="fresherPreviewDegree">Bachelor of Science</span>  
+                <span id="previewFields">(<span id="previewField">Computer Science</span>)</span> 
+            </span>
+            <span class="resume-item-date" id="fresherPreviewGradYear">2015</span>
+        </div>
+        <div class="resume-item-subtitle">
+            <span id="fresherPreviewInstitute" style="padding-top: 5px;">Stanford University</span> 
+            <div id="previewGPA" style=" padding-top: 5px; font-weight: bold; color: #555;">GPA: <span id="fresherPreviewGPA">3.8/4.0</span></div>
+        </div>
+    </div>
+</div>
+
 
                 <!-- Projects -->
   <div class="resume-section">
@@ -278,7 +290,7 @@
               <div class="resume-bullet" id="projectPoint1">Built a full-stack learning management system for 100+ beta users</div>
               <div class="resume-bullet" id="projectPoint2">Implemented real-time notifications and course progress tracking</div>
                         </div>
-                         <div class="resume-bullet">Project Link: <span id="fresherPreviewProjectLink" style="color: #1a73e8;">project.com/sarahjohnson/project</span></div>
+                         <div class="resume-bullet">Project Link: <span id="fresherPreviewProjectLink" style="color: #1a73e8; cursor: pointer;" onclick="showLink('project1')">project.com/sarahjohnson/project</span></div>
                     </div>
                 </div>
 
@@ -299,7 +311,7 @@
           
         </div>
         <div class="resume-bullet">
-                Project Link: <span id="fresherPreviewProjectLink2" style="color: #1a73e8;">drive.google.com/market-report/final</span>
+                Project Link: <span id="fresherPreviewProjectLink2" style="color: #1a73e8; cursor: pointer;" onclick="showLink('project2')">drive.google.com/market-report/final</span>
             </div>
     </div>
 </div>

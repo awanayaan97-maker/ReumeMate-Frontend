@@ -405,3 +405,29 @@ function downloadResume() {
     html2pdf().set(options).from(element).save();
 }
 
+function showLink(name){
+
+let previewLinkedIn = document.getElementById("previewLinkedIn");
+let previewGithub = document.getElementById("previewGithub");
+
+
+if (name === "linkedIn"  && previewLinkedIn.innerText !== "") {
+let linkedInLink = previewLinkedIn.innerText.trim();
+window.open(linkedInLink, '_blank')
+}
+
+if (name === "gitHub"  && previewGithub.innerText !== "") {
+let githubLink = previewGithub.innerText.trim();
+window.open(githubLink, '_blank')
+}
+
+
+}
+
+function optionalInputs(value) {
+
+let previewGithub = document.getElementById("previewGithub");
+
+previewGithub.innerText = value
+
+}
